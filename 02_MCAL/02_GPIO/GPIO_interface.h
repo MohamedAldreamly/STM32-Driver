@@ -15,7 +15,8 @@
 #define GPIO_HIGH    1
 #define GPIO_LOW     0
 
-
+#define GPIO_PORT_HIGH    0xFFFF
+#define GPIO_PORT_LOW     0
 
 #define GPIOA   0
 #define GPIOB   1
