@@ -1,10 +1,9 @@
 /*
  *<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    ERROR_STATUS.h    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
  *
- *  Author  : Mahmoud Karem Zamel
- *  Date    : 29 June 2021
- *  Vertion : V01
- *  Layer   : BIN/Services/LIB
+ * Author  : Mohamed Aldremly
+ * Date    : 5/6/2026
+ *  Layer  : LIB
  *
  */ 
 
