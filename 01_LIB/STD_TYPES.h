@@ -1,7 +1,8 @@
 /*
  *<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    STD_TYPES.h    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
  *
- *  Author : Mahmoud Karem Zamel
+ * Author  : Mohamed Aldremly
+ * Date    : 5/6/2026
  *  Layer  : LIB
  *
  */ 
