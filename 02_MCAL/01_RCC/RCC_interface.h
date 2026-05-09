@@ -13,6 +13,14 @@
 
 //==============================================================================================================
 
+#define RCC_HSI         0
+#define RCC_HSE         1
+#define RCC_PLL         2
+#define RCC_HSE_BYPASS  3
+
+#define RCC_PLL_HSI_DIVIDED_BY_2  0
+#define RCC_PLL_HSE               1
+#define RCC_PLL_HSE_DIVIDED_BY_2  2
 
 #define ENABLE_PERIPHERAL     1
 #define DISABLE_PERIPHERAL    0
@@ -20,6 +28,15 @@
 
 //==============================================================================================================
 
+//RCC_CR Register Bits
+#define RCC_HSION                        0
+#define RCC_HSIRDY                       1
+#define RCC_HSEON                        16
+#define RCC_HSERDY                       17
+#define RCC_HSEBYP                       18
+#define RCC_CSSON                        19
+#define RCC_PLLON                        24
+#define RCC_PLLRDY                       25 
 
 /*******************************************************************/
 /*                                                                 */
@@ -50,14 +67,6 @@
 #define RCC_SW_HSE   0b01
 #define RCC_SW_PLL   0b10
 
-
-#define RCC_HSI                         1
-#define RCC_HSE                         2
-#define RCC_PLL                         3
-#define RCC_PLL_HSI_DIVIDED_BY_2        4
-#define RCC_PLL_HSE                     5
-#define RCC_PLL_HSE_DIVIDED_BY_2        6
-#define RCC_HSE_BYPASS                  7
 
 //==============================================================================================================
 
@@ -324,9 +333,9 @@
 //==============================================================================================================
 void RCC_voidInitSysClock( void );
 
-void RCC_voidEnablePeripheralClock  ( u8 Copy_u8BusId  , u8 Copy_u8PeripheralId );
+void RCC_voidEnablePeripheralClock( u8 Copy_u8BusId , u8 Copy_u8PeripheralId );
 void RCC_voidDisablePeripheralClock ( u8 Copy_u8BusId  , u8 Copy_u8PeripheralId );
-
+void RCC_voidResetPeripheralClock(u8 Copy_u8BusId, u8 Copy_u8PeripheralId);
 //==============================================================================================================
 
 #endif /* RCC_INTERFACE_H_ */
