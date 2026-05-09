@@ -1,5 +1,5 @@
 /*
- *<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    DIO_interface.h   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ *<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    GPIO_interface.h   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
  *
  *  Author  : Mohamed Aldremly
  *  Date    : 5/6/2026
@@ -7,8 +7,8 @@
  *  Layer   : MCAL
  * 
  */ 
-#ifndef DIO_INTERFACE_H
-#define DIO_INTERFACE_H
+#ifndef GPIO_INTERFACE_H
+#define GPIO_INTERFACE_H
 
 //==============================================================================================================
 
@@ -17,6 +17,20 @@
 
 #define GPIO_PORT_HIGH    0xFFFF
 #define GPIO_PORT_LOW     0
+
+
+typedef struct
+{
+    volatile u32 GPIO_CRL;
+    volatile u32 GPIO_CRH;
+    volatile u32 GPIO_IDR;
+    volatile u32 GPIO_ODR;
+    volatile u32 GPIO_BSRR;
+    volatile u32 GPIO_BRR;
+    volatile u32 GPIO_LCKR;
+
+} GPIO_Typedef;
+
 
 #define GPIOA   0
 #define GPIOB   1
@@ -68,12 +82,12 @@
 //==============================================================================================================
 
     /*    M for MCAL   */
-void MDIO_voidSetPinDirection   ( GPIO_Typedef* Copy_GPIO , u8 Copy_u8Pin , u8 Copy_u8Mode      );
-void MDIO_voidSetPinValue       ( GPIO_Typedef* Copy_GPIO , u8 Copy_u8Pin , u8 u8Copy_u8Value   );
-void  GPIO_u8GetPinValue        ( GPIO_Typedef* Copy_GPIO , u8 Copy_u8Pin , u8* u8Copy_u8Value  );
+void GPIO_voidSetPinDirection   ( GPIO_Typedef* Copy_GPIO , u8 Copy_u8Pin , u8 Copy_u8Mode      );
+void GPIO_voidSetPinValue       ( GPIO_Typedef* Copy_GPIO , u8 Copy_u8Pin , u8 Copy_u8Value     );
+void GPIO_u8GetPinValue         ( GPIO_Typedef* Copy_GPIO , u8 Copy_u8Pin , u8* Copy_u8Value    );
 void GPIO_voidSetPortDirection  ( GPIO_Typedef* Copy_GPIO , u8 Copy_u8Mode                      );
-void MDIO_voidSetPortValue      ( GPIO_Typedef* Copy_GPIO , u16 Copy_u8Value                    );
-void  MDIO_u16GetPortValue      ( GPIO_Typedef* Copy_GPIO , u16* Copy_u8Value                   );
+void GPIO_voidSetPortValue      ( GPIO_Typedef* Copy_GPIO , u16 Copy_u8Value                    );
+void GPIO_u16GetPortValue       ( GPIO_Typedef* Copy_GPIO , u16* Copy_u8Value                   );
 
 //==============================================================================================================
 
