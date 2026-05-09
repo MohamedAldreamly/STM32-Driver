@@ -21,16 +21,25 @@
 #define ROR(reg,num)         reg=(reg<<(REGISTER_SIZE-num))|(reg>>(num))
 #define ROL(reg,num)        reg= (reg>>(REGISTER_SIZE-num))|(reg<<(num))
 
-#define SET_2BIT(reg,bit)    reg|=(3<<bit*2)
-#define SET_4BIT(reg,bit)    reg|=(0b1111<<bit*4)
+// set position from 0 (0,1,2,3, .....)
 
-#define CLR_2BIT(reg,bit)    reg&=(~(0b11<<bit*2))
-#define SET_2BIT_VALUE(reg,bit,value)    reg|=  (((value) & 0b11U) << (bit*2))
+#define CLR_2BIT_R(reg,bit)    reg&=(~(0b11<<bit*2))
+#define SET_2BIT_VALUE_R(reg,bit,value)    reg|=  (((value) & 0b11U) << (bit*2))
 
-#define CLR_4BIT(reg,bit)    reg&=(~(0b1111<<bit*4))
-#define SET_4BIT_VALUE(reg,bit,value)    reg|=  (((value) & 0b1111U) << (bit*4))
+#define CLR_4BIT_R(reg,bit)    reg&=(~(0b1111<<(bit*4)))
+#define SET_4BIT_VALUE_R(reg,bit,value)    reg|=  (((value) & 0b1111U) << (bit*4))
 
-#define CLR_3BIT(reg,bit)    reg&=(~(0b111<<bit*3))
-#define SET_3BIT_VALUE(reg,bit,value)    reg |=  (((value) & 0b111U) << (bit*3))
+#define CLR_3BIT_R(reg,bit)    reg&=(~(0b111<<(bit*3)))
+#define SET_3BIT_VALUE_R(reg,bit,value)    reg |=  (((value) & 0b111U) << (bit*3))
+
+// set the real postion 
+#define CLR_3BIT(reg,bit)              ((reg) &= ~(0b111U << (bit)))
+#define SET_3BIT_VALUE(reg,bit,value)  ((reg) |= (((value) & 0b111U) << (bit)))
+
+#define CLR_2BIT(reg,bit)              ((reg) &= ~(0b11U << (bit)))
+#define SET_2BIT_VALUE(reg,bit,value)  ((reg) |= (((value) & 0b11U) << (bit)))
+
+#define CLR_4BIT(reg,bit)              ((reg) &= ~(0b1111U << (bit)))
+#define SET_4BIT_VALUE(reg,bit,value)  ((reg) |= (((value) & 0b1111U) << (bit)))
 
 #endif //BIT_MATH_H_
