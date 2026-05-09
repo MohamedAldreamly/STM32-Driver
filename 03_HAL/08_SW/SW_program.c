@@ -4,7 +4,7 @@
  *  Author  : Mohamed Aldreamly
  *  Date    : 5/7/2026
  *  Vertion : V01
- *  Layer   : MCAL
+ *  Layer   : HAL
  *
  */  
 
@@ -43,18 +43,21 @@ void SW_voidInit(SW_PinConfig Copy_Config)
 u8 SW_u8GetState(SW_PinConfig Copy_Config)
 {
     u8 Local_u8State = SW_RELEASED;
-    u8 Local_u8PinState = GPIO_voidGetPinValue(Copy_Config.Port, Copy_Config.Pin);
+    u8 Local_u8PinState ; 
+    GPIO_u8GetPinValue(Copy_Config.Port, Copy_Config.Pin, &Local_u8PinState);
+    
     
     if (Copy_Config.SW_Type == SW_ACTIVE_HIGH)
     {
         if (Local_u8PinState == GPIO_HIGH)
         {
-            STK_voidSetDelay_ms(20); // Debounce delay
-            Local_u8PinState = GPIO_voidGetPinValue(Copy_Config.Port, Copy_Config.Pin);
+            STK_voidDelayMs(20); // Debounce delay
+            GPIO_u8GetPinValue(Copy_Config.Port, Copy_Config.Pin, &Local_u8PinState);
+
             if (Local_u8PinState == GPIO_HIGH)
             {
                 Local_u8State = SW_PRESSED;// Return the actual state for active high
-                while (GPIO_voidGetPinValue(Copy_Config.Port, Copy_Config.Pin) == GPIO_HIGH); // Wait until the switch is released
+                while (Local_u8PinState == GPIO_HIGH); // Wait until the switch is released
             }
         }
         return Local_u8State;
@@ -64,13 +67,14 @@ u8 SW_u8GetState(SW_PinConfig Copy_Config)
     {
         if (Local_u8PinState == GPIO_LOW)
         {
-            STK_voidSetDelay_ms(20); // Debounce delay
-            Local_u8PinState = GPIO_voidGetPinValue(Copy_Config.Port, Copy_Config.Pin);
+            STK_voidDelayMs(20); // Debounce delay
+            GPIO_u8GetPinValue(Copy_Config.Port, Copy_Config.Pin, &Local_u8PinState);
+    
 
             if (Local_u8PinState == GPIO_LOW)
             {
                 Local_u8State = SW_PRESSED;// Return the actual state for active low
-                while (GPIO_voidGetPinValue(Copy_Config.Port, Copy_Config.Pin) == GPIO_LOW); // Wait until the switch is released
+                while (Local_u8PinState == GPIO_LOW); // Wait until the switch is released
             }
         }
         return Local_u8State;
