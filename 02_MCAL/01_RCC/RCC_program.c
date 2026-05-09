@@ -150,4 +150,12 @@ void RCC_voidResetPeripheralClock( u8 Copy_u8BusId , u8 Copy_u8PeripheralId )
 	}
 }
 
+void RCC_voidEnableSYSCFGClock(void)
+{
+
+	RCC_voidEnablePeripheralClock( MRCC->APB2ENR , SYSCFG_EN );
+	
+    
+}
+
 //==============================================================================================================
