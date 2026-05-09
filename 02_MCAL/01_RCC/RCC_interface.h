@@ -331,11 +331,16 @@
 #define    APB2_BUS      2
 
 //==============================================================================================================
+#define SYSCFG_EN       14
+
+
 void RCC_voidInitSysClock( void );
 
 void RCC_voidEnablePeripheralClock( u8 Copy_u8BusId , u8 Copy_u8PeripheralId );
 void RCC_voidDisablePeripheralClock ( u8 Copy_u8BusId  , u8 Copy_u8PeripheralId );
 void RCC_voidResetPeripheralClock(u8 Copy_u8BusId, u8 Copy_u8PeripheralId);
+
+void RCC_voidEnableSYSCFGClock(void);
 //==============================================================================================================
 
 #endif /* RCC_INTERFACE_H_ */
