@@ -1,5 +1,5 @@
 /*
- *<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    DIO_config.h   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ *<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    GPIO_config.h   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
  *
  *  Author  : Mohamed Aldremly
  *  Date    : 5/6/2026
@@ -8,8 +8,8 @@
  * 
  */  
 
-#ifndef _DIO_CONFIG_H
-#define _DIO_CONFIG_H
+#ifndef _GPIO_CONFIG_H
+#define _GPIO_CONFIG_H
 
 
 
