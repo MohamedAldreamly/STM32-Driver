@@ -1,4 +1,5 @@
-/*
+/*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< STM32F1 GPIO driver   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
  *<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    GPIO_program.c   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
  *
  *  Author  : Mohamed Aldremly
@@ -17,7 +18,7 @@
 
 //==============================================================================================================
 
-void MDIO_voidSetPinDirection(GPIO_Typedef* Copy_GPIO, u8 Copy_u8Pin, u8 Copy_u8Mode)
+void GPIO_voidSetPinDirection(GPIO_Typedef* Copy_GPIO, u8 Copy_u8Pin, u8 Copy_u8Mode)
 	{
 
 	if ((Copy_GPIO == NULL) ||(Copy_u8Pin > 15))
@@ -28,7 +29,7 @@ void MDIO_voidSetPinDirection(GPIO_Typedef* Copy_GPIO, u8 Copy_u8Pin, u8 Copy_u8
     if (Copy_u8Pin <= 7)
     {
         /* Clear the 4 configuration bits of the selected pin */
-		CLR_4BIT(Copy_GPIO->GPIO_CRL,Copy_u8Pin);
+		CLR_4BIT(Copy_GPIO->GPIO_CRL, Copy_u8Pin * 4);
 
         /* Set the new mode */
         Copy_GPIO->GPIO_CRL |=  ((u32)Copy_u8Mode << (Copy_u8Pin * 4));
@@ -38,8 +39,7 @@ void MDIO_voidSetPinDirection(GPIO_Typedef* Copy_GPIO, u8 Copy_u8Pin, u8 Copy_u8
         Copy_u8Pin = Copy_u8Pin - 8;
 
         /* Clear the 4 configuration bits of the selected pin */
-		CLR_4BIT(Copy_GPIO->GPIO_CRH,Copy_u8Pin);
-
+		CLR_4BIT(Copy_GPIO->GPIO_CRH, Copy_u8Pin * 4);
         /* Set the new mode */
         Copy_GPIO->GPIO_CRH |=  ((u32)Copy_u8Mode << (Copy_u8Pin * 4));
     }
@@ -85,10 +85,21 @@ void  GPIO_u8GetPinValue  ( GPIO_Typedef* Copy_GPIO, u8 Copy_u8Pin , u8* Copy_u8
 	*Copy_u8Value = GET_BIT(Copy_GPIO->GPIO_IDR, Copy_u8Pin);	
 }
 
+
+void GPIO_voidTogglePinValue( GPIO_Typedef* Copy_GPIO, u8 Copy_u8Pin )
+{
+	if ((Copy_GPIO == NULL) ||(Copy_u8Pin > 15))
+	{
+		return;
+	}
+	TOG_BIT(Copy_GPIO->GPIO_ODR,Copy_u8Pin)  ;
+
+}
+
 void GPIO_voidSetPortDirection ( GPIO_Typedef* Copy_GPIO , u8 Copy_u8Mode   )
 {
 
-	for (u8 i = 0; i < 7; i++)
+	for (u8 i = 0; i < 8; i++)
     {
         /* Clear the 4 configuration bits of the selected pin */
 		Copy_GPIO->GPIO_CRL &= ~((u32)0xF << ((i) * 4));
