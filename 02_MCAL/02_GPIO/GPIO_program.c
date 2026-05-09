@@ -1,5 +1,5 @@
 /*
- *<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    GPIO_config.h   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ *<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    GPIO_program.c   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
  *
  *  Author  : Mohamed Aldremly
  *  Date    : 5/6/2026
@@ -50,21 +50,21 @@ void MDIO_voidSetPinDirection(GPIO_Typedef* Copy_GPIO, u8 Copy_u8Pin, u8 Copy_u8
 }
 
 
-void GPIO_voidSetPinValue      ( GPIO_Typedef* Copy_GPIO, u8 Copy_u8Pin , u8 u8Copy_u8Value   )
+void GPIO_voidSetPinValue( GPIO_Typedef* Copy_GPIO, u8 Copy_u8Pin , u8 Copy_u8Value   )
 {
 	if ((Copy_GPIO == NULL) ||(Copy_u8Pin > 15))
 	{
 		return;
 	}
 
-	switch (u8Copy_u8Value)
+	switch (Copy_u8Value)
 	{
 		case GPIO_HIGH:
-			SET_BIT(Copy_GPIO->GPIO_BSRR,Copy_u8Pin);   
+			SET_BIT(Copy_GPIO->GPIO_ODR,Copy_u8Pin);   
 			
 			break;
 		case GPIO_LOW:
-			CLR_BIT(Copy_GPIO->GPIO_BSRR,(Copy_u8Pin+ 16));  // Reset the pin
+			CLR_BIT(Copy_GPIO->GPIO_ODR,Copy_u8Pin);  // Reset the pin
 			//SET_BIT(Copy_GPIO->GPIO_BRR,Copy_u8Pin);   
 
 			break;
@@ -75,14 +75,14 @@ void GPIO_voidSetPinValue      ( GPIO_Typedef* Copy_GPIO, u8 Copy_u8Pin , u8 u8C
 
 }
 
-void  GPIO_u8GetPinValue  ( GPIO_Typedef* Copy_GPIO, u8 Copy_u8Pin , u8* u8Copy_u8Value )
+void  GPIO_u8GetPinValue  ( GPIO_Typedef* Copy_GPIO, u8 Copy_u8Pin , u8* Copy_u8Value )
 {
-	if ((Copy_GPIO == NULL) ||(Copy_u8Pin > 15) || (u8Copy_u8Value == NULL))
+	if ((Copy_GPIO == NULL) ||(Copy_u8Pin > 15) || (Copy_u8Value == NULL))
 	{
 		return;
 	}
 
-	*u8Copy_u8Value = GET_BIT(Copy_GPIO->GPIO_IDR, Copy_u8Pin);	
+	*Copy_u8Value = GET_BIT(Copy_GPIO->GPIO_IDR, Copy_u8Pin);	
 }
 
 void GPIO_voidSetPortDirection ( GPIO_Typedef* Copy_GPIO , u8 Copy_u8Mode   )
@@ -110,9 +110,9 @@ void GPIO_voidSetPortValue     ( GPIO_Typedef* Copy_GPIO ,u16 Copy_u16Value )
 {
 	Copy_GPIO->GPIO_ODR = Copy_u16Value;
 }
-void  GPIO_u16GetPortValue      ( GPIO_Typedef* Copy_GPIO , u16* Copy_u8Value       )
+void  GPIO_u16GetPortValue      ( GPIO_Typedef* Copy_GPIO , u16* Copy_u16Value       )
 {
-	*Copy_u8Value = Copy_GPIO->GPIO_IDR;
+	*Copy_u16Value = Copy_GPIO->GPIO_IDR;
 }
 
 
