@@ -11,9 +11,9 @@
 #ifndef RCC_CONFG_H_
 #define RCC_CONFG_H_
 
-#define RCC_AHB_PRESCALER    RCC_HCLK_NOT_DIVIDED
-#define RCC_APB1_PRESCALER   RCC_HCLK_NOT_DIVIDED
-#define RCC_APB2_PRESCALER   RCC_HCLK_NOT_DIVIDED
+#define RCC_AHB_PRESCALER    SYSCLK_NOT_DIVIDED
+#define RCC_APB1_PRESCALER   HCLK_NOT_DIVIDED
+#define RCC_APB2_PRESCALER   HCLK_NOT_DIVIDED
 
 //==============================================================================================================
 
@@ -32,7 +32,7 @@
 /*                                                                 */
 /*******************************************************************/
 
-#define RCC_CLOCK_TYPE      RCC_PLL
+#define RCC_CLOCK_TYPE      RCC_HSI
 //#define CLOCK_TYPE        HSE
 
 #define PLL_SOURCE          PLL_HSE_DIVIDED_BY_2
@@ -61,7 +61,7 @@
 /*                              15-PLL_Clock_MULTIPLE_BY_16                                 */
 /********************************************************************************************/
 
-#define RCC_PLL_MUL          RCC_PLL_MUL_16
+#define RCC_PLL_MUL          PLL_CLOCK_MULTIPLE_BY_16
 
 //#define CLOCK_FACTOR     PLL_CLOCK_MULTIPLE_BY_16
 
@@ -83,7 +83,7 @@
 
 #define CLOCK_SECURITY_SYSTEM     DISABLE_CLOCK_SECURITY_SYSTEM
 
-//==============================================================================================================
+//=======================================================================================================
 
 
 
